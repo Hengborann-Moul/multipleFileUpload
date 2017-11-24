@@ -1,0 +1,37 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>upload Image</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('input[name=images]').on('change', function () {
+
+                console.log($(this).val());
+
+            });
+
+        });
+    </script>
+</head>
+<body>
+
+<form action="{% url 'index' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" multiple="multiple" name="images">
+    <input type="submit" name="submit" value="Submit">
+</form>
+
+<div class="image">
+    {% for item in images %}
+        <h2>{{ item }}</h2>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
